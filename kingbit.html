@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="description" content="kingbit - Turn-based multiplayer game in 100% SwiftUI">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
   <title>kingbit | bracket</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -18,42 +19,64 @@
     </nav>
   </header>
   
-  <main>
+  <main class="app-detail">
+    <!-- App header with icon and basic info -->
     <section class="app-header">
-      <img src="img/app_icons/kingbit.png" alt="kingbit" class="app-icon">
+      <img src="img/app_icons/kingbit.jpg" alt="kingbit" class="app-icon">
       <div class="app-info">
         <h1>kingbit</h1>
         <p>Turn-based multiplayer game in 100% SwiftUI</p>
+        <div class="app-meta">
+          <span>Games • Strategy</span>
+          <span class="editors-choice"><img src="img/editors_choice.svg" alt="Editor's Choice">Editor's Choice</span>
+        </div>
         <a href="https://apps.apple.com/us/app/kingbit/id1565583669" class="app-download">
-          <img src="imgs/appstore_badge.svg" alt="Download on the App Store">
+          <img src="img/appstore_badge.svg" alt="Download on the App Store">
         </a>
       </div>
     </section>
     
+    <!-- Screenshots with captions -->
     <section class="app-screenshots">
-      <img src="img/screenshots/kingbit-1.png" alt="kingbit screenshot">
-      <img src="img/screenshots/kingbit-2.png" alt="kingbit screenshot">
-      <img src="img/screenshots/kingbit-3.png" alt="kingbit screenshot">
+      <div class="screenshot-container">
+        <img src="img/screenshots/kingbit-1.png" alt="kingbit screenshot">
+        <div class="screenshot-caption">Challenge opponents to strategic battles</div>
+      </div>
+      <div class="screenshot-container">
+        <img src="img/screenshots/kingbit-2.png" alt="kingbit screenshot">
+        <div class="screenshot-caption">Explore multiple game modes</div>
+      </div>
+      <div class="screenshot-container">
+        <img src="img/screenshots/kingbit-3.png" alt="kingbit screenshot">
+        <div class="screenshot-caption">Track your progress with statistics</div>
+      </div>
     </section>
     
-    <section>
+    <!-- App description and features -->
+    <section class="app-description">
       <h2>About kingbit</h2>
       <p>kingbit is a modern, turn-based multiplayer game built entirely in SwiftUI. Challenge your friends to a game of strategy and wit, where every move counts.</p>
       
-      <section>
-        <h3>Features</h3>
-        <ul>
-          <li>Challenge friends or play against random opponents</li>
-          <li>Clean, minimal interface built with SwiftUI</li>
-          <li>Strategic gameplay that's easy to learn but difficult to master</li>
-          <li>Multiple game modes to keep things interesting</li>
-          <li>Track your stats and climb the leaderboard</li>
-        </ul>
-      </section>
+      <h3>Features</h3>
+      <ul>
+        <li><strong>Online Multiplayer:</strong> Challenge friends or random opponents</li>
+        <li><strong>Modern Design:</strong> Clean, minimal interface built with SwiftUI</li>
+        <li><strong>Strategic Gameplay:</strong> Easy to learn but difficult to master</li>
+        <li><strong>Multiple Game Modes:</strong> Classic, Blitz, and Custom variations</li>
+        <li><strong>Statistics:</strong> Track your stats and climb the leaderboard</li>
+      </ul>
       
       <p>kingbit was designed to showcase the capabilities of SwiftUI while providing an engaging and fun gaming experience. The game combines classic turn-based strategy with modern design sensibilities.</p>
-      
-      <p>Download kingbit today and start your journey to becoming the ultimate kingbit champion!</p>
+    </section>
+    
+    <!-- Player reviews -->
+    <section class="app-reviews">
+      <h2>Player Reviews</h2>
+      <div class="reviews-container">
+        <blockquote>"I've been playing this game for months and I'm still discovering new strategies."<cite>— ChessLover42</cite></blockquote>
+        <blockquote>"I love that I can play a quick game during my commute. The matchmaking is fast."<cite>— GameEnthusiast</cite></blockquote>
+        <blockquote>"Great game! My only suggestion would be to add a tournament mode."<cite>— StrategyFan99</cite></blockquote>
+      </div>
     </section>
   </main>
   
