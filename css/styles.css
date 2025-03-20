@@ -9,8 +9,6 @@
   --background: #fff;
   --background-light: #f5f5f5;
   --shadow: 0 3px 8px rgba(0,0,0,0.05);
-  
-  /* Common variables */
   --spacing: 1rem;
   --border-radius: 8px;
 }
@@ -28,6 +26,7 @@
   }
 }
 
+/* Core styles */
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   max-width: 1000px;
@@ -38,7 +37,27 @@ body {
   background-color: var(--background);
 }
 
-/* Header styles */
+/* Typography */
+h1, h2, h3 {
+  color: var(--text);
+  margin-top: 0;
+}
+
+p {
+  margin: 0 0 var(--spacing) 0;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Header */
 header {
   display: flex;
   justify-content: space-between;
@@ -50,13 +69,11 @@ header {
 header > a {
   font-weight: bold;
   font-size: 24px;
-  text-decoration: none;
   color: var(--text);
 }
 
 nav a {
   margin-left: var(--spacing);
-  text-decoration: none;
   color: var(--text-secondary);
 }
 
@@ -64,14 +81,19 @@ nav a:hover {
   color: var(--primary);
 }
 
-/* Main content - app grid for homepage */
+/* Main content */
+main {
+  width: 100%;
+}
+
+/* App grid (home page) */
 main.apps {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--spacing);
 }
 
-/* App card styling */
+/* App cards */
 article {
   border: 1px solid var(--border-light);
   border-radius: var(--border-radius);
@@ -87,8 +109,17 @@ article:hover {
   box-shadow: var(--shadow);
 }
 
+article > * {
+  margin: 0 0 var(--spacing) 0;
+}
+
+article > *:last-child {
+  margin-bottom: 0;
+}
+
 article h2 {
-  margin-top: 0;
+  font-size: 1.2rem;
+  margin: var(--spacing) 0;
 }
 
 article h2 a {
@@ -100,174 +131,179 @@ article h2 a:hover {
   color: var(--primary);
 }
 
-article img {
+article img:first-child {
   width: 80px;
   height: 80px;
   border-radius: var(--border-radius);
-  margin-bottom: calc(var(--spacing) / 2);
 }
 
 article p {
   flex-grow: 1;
-  margin: calc(var(--spacing) / 2) 0;
+  color: var(--text-secondary);
 }
 
 article a img {
   width: 120px;
   height: auto;
   border-radius: 0;
-  margin: calc(var(--spacing) / 2) 0 0 0;
+  margin: 0;
+}
+
+/* App card styling for consistent spacing */
+.apps article {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Consistent spacing between all elements */
+}
+
+.apps article h2 {
+  margin: 0;
+}
+
+.apps article p {
+  margin: 0;
+}
+
+.app-store-link {
+  display: block;
+  margin-top: 4px;
+}
+
+.app-store-badge {
+  width: 240px; /* DOUBLED from 120px */
+  height: auto;
 }
 
 /* App detail page */
-.app-header {
+.app-intro {
   display: flex;
-  align-items: center;
-  margin-bottom: calc(var(--spacing) * 2);
+  align-items: center; /* Vertically align content */
+  justify-content: space-between;
   gap: var(--spacing);
+  margin-bottom: calc(var(--spacing) * 2); /* Add space below app-intro */
+}
+
+.app-intro-container {
+  display: flex;
+  align-items: center; /* Vertically align content inside the container */
+  gap: var(--spacing); /* Add space between app icon and h1 */
+}
+
+.app-download-button {
+  margin-left: auto;
 }
 
 .app-icon {
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
 }
 
-.app-info h1 {
-  margin: 0 0 calc(var(--spacing) / 2) 0;
-}
-
-.app-info p {
+.app-intro-content h1 {
   margin: 0;
-  color: var(--text-secondary);
-  font-size: 1.2rem;
+  font-size: 2rem;
 }
 
-.app-meta {
-  margin: calc(var(--spacing) / 2) 0;
-  display: flex;
-  gap: var(--spacing);
+.app-intro-content p {
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
   color: var(--text-secondary);
-  font-size: 0.9rem;
+}
+
+.app-intro-content a img,
+main a img {
+  width: 140px;
+  height: auto;
+}
+
+.title-row {
+  display: flex;
   align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.title-row img {
+  height: 2rem;
+  width: auto;
 }
 
 .editors-choice {
   display: flex;
   align-items: center;
-  gap: calc(var(--spacing) / 2);
-  color: var(--text);
-  font-weight: 500;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .editors-choice img {
-  height: 20px;
+  height: 18px;
   width: auto;
 }
 
-.app-download {
-  display: inline-block;
-  margin-top: var(--spacing);
-}
-
-.app-download img {
-  width: 140px;
-  height: auto;
-}
-
-/* Screenshots */
-.app-screenshots {
-  display: flex;
+.media-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--spacing);
-  overflow-x: auto;
-  padding-bottom: var(--spacing);
   margin-bottom: calc(var(--spacing) * 2);
 }
 
-.screenshot-container {
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.screenshot-container img {
-  height: 500px;
+.media-item {
   border-radius: var(--border-radius);
+  overflow: hidden;
   box-shadow: var(--shadow);
 }
 
-.screenshot-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: var(--spacing);
-  color: white;
-  opacity: 0;
-  transition: opacity 0.3s;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+.media-item img {
+  display: block; /* Remove inline spacing */
+  width: 100%; /* Ensure the image fills the container */
+  height: auto; /* Maintain aspect ratio */
 }
 
-.screenshot-container:hover .screenshot-caption {
-  opacity: 1;
-}
-
-/* App description */
-.app-description {
+.app-brief {
   margin-bottom: calc(var(--spacing) * 2);
-  max-width: 800px;
-}
-
-.app-description h2,
-.app-reviews h2 {
-  margin-top: 0;
-  font-size: 1.5rem;
-  margin-bottom: var(--spacing);
-}
-
-.app-description h3 {
-  margin-top: var(--spacing);
-  margin-bottom: calc(var(--spacing) / 2);
-  font-size: 1.2rem;
-}
-
-.app-description ul {
-  padding-left: 1.5rem;
-  margin-bottom: var(--spacing);
-}
-
-.app-description li {
-  margin-bottom: calc(var(--spacing) / 2);
-}
-
-.app-description p {
-  margin-bottom: var(--spacing);
 }
 
 /* Reviews */
-.app-reviews {
-  padding-top: calc(var(--spacing) * 2);
-  border-top: 1px solid var(--border-light);
-}
-
-.reviews-container {
+.reviews-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--spacing);
+  margin-bottom: var(--spacing);
 }
 
+.review-card {
+  margin: 0;
+  padding: var(--spacing);
+  background-color: var(--background-light);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  position: relative;
+  padding-bottom: 2.5rem; /* Add space for the citation at bottom */
+}
+
+.review-card cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-style: normal;
+  color: var(--text-secondary);
+  position: absolute;
+  bottom: var(--spacing);
+  right: var(--spacing);
+}
+
+/* Remove blockquote styling since we're now using review-card */
 blockquote {
   margin: 0;
   padding: var(--spacing);
   background-color: var(--background-light);
   border-radius: var(--border-radius);
-  border-left: 4px solid var(--primary);
   box-shadow: var(--shadow);
 }
 
 blockquote cite {
   display: block;
-  margin-top: calc(var(--spacing) / 2);
+  margin-top: 0.5rem;
   font-style: normal;
   color: var(--text-secondary);
 }
@@ -281,27 +317,31 @@ footer {
   padding-top: var(--spacing);
 }
 
-/* Responsive */
+/* Download section */
+.download-section {
+  margin: var(--spacing) 0 calc(var(--spacing) * 3) 0;
+  text-align: center;
+}
+
+.download-section img {
+  width: 140px;
+  height: auto;
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  header, .app-header {
+  header, .app-intro {
     flex-direction: column;
     align-items: flex-start;
   }
   
-  .app-icon {
-    margin-bottom: var(--spacing);
-  }
-  
-  .screenshot-container img {
-    height: 400px;
-  }
-  
-  .screenshot-caption {
-    opacity: 1;
+  .app-intro {
+    align-items: center;
+    text-align: center;
   }
   
   nav {
-    margin-top: calc(var(--spacing) / 2);
+    margin-top: 0.5rem;
   }
   
   nav a {
@@ -309,7 +349,11 @@ footer {
     margin-right: var(--spacing);
   }
   
-  .reviews-container {
+  .media-showcase, .reviews-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .title-row {
+    justify-content: center;
   }
 }
