@@ -64,6 +64,7 @@ header {
   align-items: center;
   margin-bottom: calc(var(--spacing) * 2);
   padding-bottom: var(--spacing);
+  padding-top: var(--spacing); /* Add padding to the top */
 }
 
 header > a {
@@ -109,12 +110,14 @@ article:hover {
   box-shadow: var(--shadow);
 }
 
+/* Apply margin to all direct children of article */
 article > * {
-  margin: 0 0 var(--spacing) 0;
+  margin: 0 0 var(--spacing) 0 !important; /* Use !important to override other styles */
 }
 
+/* Remove margin from the last child of article */
 article > *:last-child {
-  margin-bottom: 0;
+  margin-bottom: 0 !important; /* Use !important to override other styles */
 }
 
 article h2 {
@@ -131,66 +134,24 @@ article h2 a:hover {
   color: var(--primary);
 }
 
-article img:first-child {
+/* article img:first-child {
   width: 80px;
   height: 80px;
   border-radius: var(--border-radius);
-}
+} */
 
 article p {
   flex-grow: 1;
   color: var(--text-secondary);
 }
 
-article a img {
-  width: 120px;
-  height: auto;
-  border-radius: 0;
-  margin: 0;
-}
-
-/* App card styling for consistent spacing */
-.apps article {
-  display: flex;
-  flex-direction: column;
-  gap: 12px; /* Consistent spacing between all elements */
-}
-
-.apps article h2 {
-  margin: 0;
-}
-
-.apps article p {
-  margin: 0;
-}
-
-.app-store-link {
-  display: block;
-  margin-top: 4px;
-}
-
-.app-store-badge {
-  width: 240px; /* DOUBLED from 120px */
-  height: auto;
-}
-
 /* App detail page */
 .app-intro {
   display: flex;
-  align-items: center; /* Vertically align content */
+  align-items: center;
   justify-content: space-between;
-  gap: var(--spacing);
-  margin-bottom: calc(var(--spacing) * 2); /* Add space below app-intro */
-}
-
-.app-intro-container {
-  display: flex;
-  align-items: center; /* Vertically align content inside the container */
-  gap: var(--spacing); /* Add space between app icon and h1 */
-}
-
-.app-download-button {
-  margin-left: auto;
+  gap: 2rem;
+  margin-bottom: calc(var(--spacing) * 2);
 }
 
 .app-icon {
@@ -200,45 +161,15 @@ article a img {
   box-shadow: var(--shadow);
 }
 
-.app-intro-content h1 {
+.app-intro h1 {
   margin: 0;
   font-size: 2rem;
 }
 
-.app-intro-content p {
+.app-intro p {
   margin: 0 0 1rem 0;
   font-size: 1.2rem;
   color: var(--text-secondary);
-}
-
-.app-intro-content a img,
-main a img {
-  width: 140px;
-  height: auto;
-}
-
-.title-row {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
-}
-
-.title-row img {
-  height: 2rem;
-  width: auto;
-}
-
-.editors-choice {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.editors-choice img {
-  height: 18px;
-  width: auto;
 }
 
 .media-showcase {
@@ -255,9 +186,9 @@ main a img {
 }
 
 .media-item img {
-  display: block; /* Remove inline spacing */
-  width: 100%; /* Ensure the image fills the container */
-  height: auto; /* Maintain aspect ratio */
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .app-brief {
@@ -279,7 +210,7 @@ main a img {
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   position: relative;
-  padding-bottom: 2.5rem; /* Add space for the citation at bottom */
+  padding-bottom: 2.5rem;
 }
 
 .review-card cite {
@@ -292,22 +223,6 @@ main a img {
   right: var(--spacing);
 }
 
-/* Remove blockquote styling since we're now using review-card */
-blockquote {
-  margin: 0;
-  padding: var(--spacing);
-  background-color: var(--background-light);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
-}
-
-blockquote cite {
-  display: block;
-  margin-top: 0.5rem;
-  font-style: normal;
-  color: var(--text-secondary);
-}
-
 /* Footer */
 footer {
   margin-top: calc(var(--spacing) * 2);
@@ -315,17 +230,20 @@ footer {
   font-size: 14px;
   color: var(--text-light);
   padding-top: var(--spacing);
+  padding-bottom: var(--spacing); /* Add padding to the bottom */
 }
 
 /* Download section */
-.download-section {
-  margin: var(--spacing) 0 calc(var(--spacing) * 3) 0;
-  text-align: center;
+.app-download-button img {
+  height: 60px;
+  width: auto;
+  margin-left: 0;
 }
 
-.download-section img {
-  width: 140px;
-  height: auto;
+/* Increase the size of the app store badge */
+article .app-store-badge {
+  height: 75px;
+  width: auto; /* Maintain aspect ratio */
 }
 
 /* Responsive adjustments */
@@ -352,8 +270,34 @@ footer {
   .media-showcase, .reviews-grid {
     grid-template-columns: 1fr;
   }
+
+  .media-showcase {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem; /* Add some padding at the bottom for scrollbar */
+  }
+
+  .media-item {
+    flex: 0 0 80%; /* Adjust the width as needed */
+    scroll-snap-align: start;
+  }
   
   .title-row {
     justify-content: center;
+    margin-right: auto; /* Override previous style */
+    margin-left: auto;
   }
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-right: auto; /* Push title and editor's choice to the left */
+}
+
+.title-row img {
+  height: 60px; /* Same height as app icon */
+  width: auto;
 }
