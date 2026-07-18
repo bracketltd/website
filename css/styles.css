@@ -1,50 +1,28 @@
-/* Base styles with CSS variables */
 :root {
-  /* Light mode variables */
-  --primary: #0078d7;
-  --text: #333;
-  --text-secondary: #666;
-  --text-light: #999;
-  --border-light: #eee;
-  --background: #fff;
-  --background-light: #f5f5f5;
-  --shadow: 0 3px 8px rgba(0,0,0,0.05);
-  --spacing: 1rem;
+  color-scheme: light dark;
+  --primary: light-dark(#0078d7, #4ca6ff);
+  --text: light-dark(#333, #e0e0e0);
+  --text-secondary: light-dark(#666, #b0b0b0);
+  --background: light-dark(#fff, #121212);
+  --background-light: light-dark(#f5f5f5, #222);
+  --shadow: 0 3px 8px light-dark(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.3));
   --border-radius: 8px;
+  /* One spacing value: the page's side padding and the grid's gap. */
+  --gap: min(10vw, 5rem);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary: #4ca6ff;
-    --text: #e0e0e0;
-    --text-secondary: #b0b0b0;
-    --text-light: #808080;
-    --border-light: #333;
-    --background: #121212;
-    --background-light: #222;
-    --shadow: 0 3px 8px rgba(0,0,0,0.3);
-  }
-}
-
-/* Core styles */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: var(--spacing);
+  font-family: system-ui, sans-serif;
+  max-width: 640px;
+  margin-inline: auto;
+  padding: 1rem var(--gap) 8rem;
   line-height: 1.5;
   color: var(--text);
   background-color: var(--background);
 }
 
-/* Typography */
-h1, h2, h3 {
-  color: var(--text);
+h2, h3 {
   margin-top: 0;
-}
-
-p {
-  margin: 0 0 var(--spacing) 0;
 }
 
 a {
@@ -57,24 +35,19 @@ img {
   height: auto;
 }
 
-/* Header */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: calc(var(--spacing) * 2);
-  padding-bottom: var(--spacing);
-  padding-top: var(--spacing); /* Add padding to the top */
+/* Site nav */
+body > header {
+  padding: 1rem 0;
+  margin-bottom: 4rem;
 }
 
-header > a {
-  font-weight: bold;
-  font-size: 24px;
-  color: var(--text);
+nav {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1rem, 6vw, 2.5rem);
 }
 
 nav a {
-  margin-left: var(--spacing);
   color: var(--text-secondary);
 }
 
@@ -82,222 +55,110 @@ nav a:hover {
   color: var(--primary);
 }
 
-/* Main content */
-main {
-  width: 100%;
-}
-
 /* App grid (home page) */
-main.apps {
+.apps {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--spacing);
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-/* App cards */
-article {
-  border: 1px solid var(--border-light);
-  border-radius: var(--border-radius);
-  padding: var(--spacing);
+.apps img {
+  display: block;
+  width: 100%;
+  border-radius: 22%;
   transition: transform 0.2s;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--background);
 }
 
-article:hover {
+.apps a:hover img {
   transform: translateY(-3px);
   box-shadow: var(--shadow);
 }
 
-/* Apply margin to all direct children of article */
-article > * {
-  margin: 0 0 var(--spacing) 0 !important; /* Use !important to override other styles */
-}
-
-/* Remove margin from the last child of article */
-article > *:last-child {
-  margin-bottom: 0 !important; /* Use !important to override other styles */
-}
-
-article h2 {
-  font-size: 1.2rem;
-  margin: var(--spacing) 0;
-}
-
-article h2 a {
-  color: var(--text);
-  text-decoration: none;
-}
-
-article h2 a:hover {
-  color: var(--primary);
-}
-
-/* article img:first-child {
-  width: 80px;
-  height: 80px;
-  border-radius: var(--border-radius);
-} */
-
-article p {
-  flex-grow: 1;
-  color: var(--text-secondary);
-}
-
 /* App detail page */
-.app-intro {
+main > header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-bottom: calc(var(--spacing) * 2);
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 4rem;
 }
 
-.app-icon {
-  width: 80px;
-  height: 80px;
-  border-radius: var(--border-radius);
+main > header img {
+  height: 60px;
+  width: auto;
+}
+
+main > header img:first-child {
+  border-radius: 22%;
   box-shadow: var(--shadow);
 }
 
-.app-intro h1 {
+.download {
+  display: block;
+  width: fit-content;
+  margin-top: 4rem;
+  margin-inline: auto;
+}
+
+.download img {
+  height: 60px;
+  width: auto;
+}
+
+main > header h1 {
   margin: 0;
   font-size: 2rem;
 }
 
-.app-intro p {
-  margin: 0 0 1rem 0;
-  font-size: 1.2rem;
-  color: var(--text-secondary);
+main section {
+  margin-bottom: 2rem;
 }
 
-.media-showcase {
+main section h2 {
+  margin-bottom: 1.5rem;
+}
+
+/* Screenshot and review grids */
+main section ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--spacing);
-  margin-bottom: calc(var(--spacing) * 2);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.media-item {
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-
-.media-item img {
+main section img {
   display: block;
   width: 100%;
-  height: auto;
-}
-
-.app-brief {
-  margin-bottom: calc(var(--spacing) * 2);
-}
-
-/* Reviews */
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--spacing);
-  margin-bottom: var(--spacing);
-}
-
-.review-card {
-  margin: 0;
-  padding: var(--spacing);
-  background-color: var(--background-light);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
-  position: relative;
-  padding-bottom: 2.5rem;
 }
 
-.review-card cite {
-  display: block;
-  margin-top: 0.5rem;
-  font-style: normal;
-  color: var(--text-secondary);
-  position: absolute;
-  bottom: var(--spacing);
-  right: var(--spacing);
-}
-
-/* Footer */
-footer {
-  margin-top: calc(var(--spacing) * 2);
-  text-align: center;
-  font-size: 14px;
-  color: var(--text-light);
-  padding-top: var(--spacing);
-  padding-bottom: var(--spacing); /* Add padding to the bottom */
-}
-
-/* Download section */
-.app-download-button img {
-  height: 60px;
-  width: auto;
-  margin-left: 0;
-}
-
-/* Increase the size of the app store badge */
-article .app-store-badge {
-  height: 75px;
-  width: auto; /* Maintain aspect ratio */
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  header, .app-intro {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .app-intro {
-    align-items: center;
-    text-align: center;
-  }
-  
-  nav {
-    margin-top: 0.5rem;
-  }
-  
-  nav a {
-    margin-left: 0;
-    margin-right: var(--spacing);
-  }
-  
-  .media-showcase, .reviews-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .media-showcase {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 1rem; /* Add some padding at the bottom for scrollbar */
-  }
-
-  .media-item {
-    flex: 0 0 80%; /* Adjust the width as needed */
-    scroll-snap-align: start;
-  }
-  
-  .title-row {
-    justify-content: center;
-    margin-right: auto; /* Override previous style */
-    margin-left: auto;
-  }
-}
-
-.title-row {
+/* Fill the grid row so every card is the same height, with the
+   attribution pinned to the bottom. */
+blockquote {
+  box-sizing: border-box;
+  height: 100%;
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-right: auto; /* Push title and editor's choice to the left */
+  flex-direction: column;
+  margin: 0;
+  padding: 1rem;
+  background-color: var(--background-light);
+  border-radius: var(--border-radius);
 }
 
-.title-row img {
-  height: 60px; /* Same height as app icon */
-  width: auto;
+blockquote p {
+  margin: 0;
+}
+
+blockquote cite {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  font-style: normal;
+  text-align: right;
+  color: var(--text-secondary);
 }
