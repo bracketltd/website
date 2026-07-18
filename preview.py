@@ -10,5 +10,10 @@ class Handler(SimpleHTTPRequestHandler):
             return f + ".html"
         return f
 
+    def send_error(self, code, message=None, explain=None):
+        if code == 404 and os.path.exists("404.html"):
+            self.error_message_format = open("404.html").read()
+        super().send_error(code, message, explain)
+
 
 HTTPServer(("", 8000), Handler).serve_forever()
